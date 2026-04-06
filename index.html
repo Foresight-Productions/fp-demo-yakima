@@ -144,23 +144,36 @@
       display: flex; align-items: center; justify-content: center;
     }
 
-    /* ─── HERO: Bold Poster — 100vh dark, type-only, NO image ─── */
+    /* ─── HERO: full-viewport CrossFit image + dark overlay + bold type ─── */
     .hero {
       position: relative;
       min-height: 100svh;
-      background: var(--primary);
+      background: var(--primary) center/cover no-repeat;
       display: flex;
       align-items: center;
       padding: 68px 5% 6rem;
       overflow: hidden;
-      /* diagonal bottom edge */
       clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%);
       margin-bottom: -2px;
     }
-    /* Geometric CSS shapes — the ONLY visual decoration in the hero */
+    /* Dark overlay so text pops over the photo */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(6,15,24,0.88) 0%,
+        rgba(6,15,24,0.72) 55%,
+        rgba(6,15,24,0.45) 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+    /* Geometric CSS shapes — decorative accent on top of the overlay */
     .hero-shape-1 {
       position: absolute; right: 0; top: 0;
       width: 0; height: 0;
+      z-index: 2;
       border-left: 45vw solid transparent;
       border-top: 100vh solid var(--blue);
       opacity: 0.06;
@@ -171,7 +184,8 @@
       width: 220px; height: 220px;
       background: var(--accent);
       clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-      opacity: 0.14;
+      opacity: 0.18;
+      z-index: 2;
       pointer-events: none;
     }
     .hero-shape-3 {
@@ -907,6 +921,20 @@
 </footer>
 
 <script>
+  // Hero background image — CrossFit action photo from Unsplash
+  fetch('https://api.unsplash.com/photos/random?query=crossfit+gym+barbell&orientation=landscape&client_id=X40-Lk7G_Q6Zk-Cn4jXIDNbMzfHlIfj7fdhl-J-5b58')
+    .then(r => r.json())
+    .then(d => {
+      if (d && d.urls) {
+        document.querySelector('.hero').style.backgroundImage = `url(${d.urls.regular})`;
+      }
+    })
+    .catch(() => {
+      // fallback static photo if API fails
+      document.querySelector('.hero').style.backgroundImage =
+        "url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&auto=format&fit=crop')";
+    });
+
   // Nav scroll shadow
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
