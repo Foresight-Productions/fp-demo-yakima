@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yakima CrossFit | Compete in the Sport of Fitness · Yakima, WA</title>
+  <meta name="description" content="Yakima CrossFit offers CrossFit classes, open gym, youth programs, and drop-in sessions in Yakima, WA. Real training. Real community. Real results.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://foresight-productions.github.io/fp-demo-yakima/">
+  <meta property="og:title" content="Yakima CrossFit | Compete in the Sport of Fitness · Yakima, WA">
+  <meta property="og:description" content="Real training, real community, real results. CrossFit classes, open gym, youth programs, and drop-in sessions at Yakima's most dedicated box.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=630&fit=crop&auto=format">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="CrossFit barbell training at Yakima CrossFit">
+  <meta property="og:site_name" content="Yakima CrossFit">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Yakima CrossFit | Compete in the Sport of Fitness · Yakima, WA">
+  <meta name="twitter:description" content="Real training, real community, real results. CrossFit classes, open gym, youth programs, and drop-in sessions at Yakima's most dedicated box.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&h=630&fit=crop&auto=format">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Design System
+      Style: Vibrant & Block-based
+      Archetype: Bold Poster
+      Fonts: Barlow Condensed (900/700/600) / Barlow (300/400/500/600)
+      Palette: primary #0D1B2A | accent #FF5500 | blue #1E5CB3 | cream #F5F1E8 | text #0D1B2A
+      Anti-patterns avoided: static design, emojis as icons, bare nav selector, generic hero
+    */
+
+    :root {
+      --primary:      #0D1B2A;
+      --primary-dark: #060F18;
+      --accent:       #FF5500;
+      --accent-dark:  #D94800;
+      --blue:         #1E5CB3;
+      --blue-light:   #2E6DC8;
+      --cream:        #F5F1E8;
+      --bg:           #F5F1E8;
+      --bg-subtle:    #EDE8D9;
+      --surface:      #FFFFFF;
+      --text:         #0D1B2A;
+      --text-muted:   #5C6E7E;
+      --text-light:   #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ─── NAV ─── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      background: var(--primary);
+      transition: box-shadow 0.3s ease;
+    }
+    #nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+    .nav-logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+    .nav-logo-img { height: 36px; object-fit: contain; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; flex-shrink: 0; }
+    .nav-links a {
+      color: var(--cream);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent) !important;
+      color: var(--text-light) !important;
+      padding: 0.5rem 1.25rem !important;
+      border-radius: 4px;
+      font-weight: 600 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--accent-dark) !important; transform: translateY(-1px); }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+      flex-shrink: 0;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--cream); transition: all 0.3s ease; border-radius: 2px; }
+
+    /* Mobile overlay */
+    .nav-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--primary);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .nav-overlay.open { display: flex; }
+    .nav-overlay a {
+      color: var(--cream);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+    .nav-overlay a:hover { color: var(--accent); }
+    .overlay-close {
+      position: absolute;
+      top: 20px; right: 5%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--cream);
+      font-size: 2rem;
+      line-height: 1;
+      min-height: 44px;
+      min-width: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ─── HERO (Bold Poster) ─── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      padding: 68px 5% 5rem;
+      overflow: hidden;
+    }
+    /* Geometric accents */
+    .hero-geo-right {
+      position: absolute;
+      right: 0; top: 0;
+      width: 42%;
+      height: 100%;
+      background: var(--blue);
+      clip-path: polygon(22% 0%, 100% 0%, 100% 100%, 0% 100%);
+      opacity: 0.10;
+      pointer-events: none;
+    }
+    .hero-geo-tri {
+      position: absolute;
+      right: 8%;
+      bottom: 12%;
+      width: 0;
+      height: 0;
+      border-left: 90px solid transparent;
+      border-right: 90px solid transparent;
+      border-bottom: 156px solid var(--accent);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .hero-geo-circle {
+      position: absolute;
+      right: 18%;
+      top: 15%;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 40px solid var(--blue);
+      opacity: 0.07;
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 920px; }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+      padding-left: 1rem;
+      border-left: 3px solid var(--accent);
+    }
+    .hero-headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(5rem, 14vw, 11rem);
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 2.25rem;
+    }
+    .hero-headline .hl-blue   { color: var(--blue-light); }
+    .hero-headline .hl-accent { color: var(--accent); }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(245,241,232,0.62);
+      max-width: 460px;
+      margin-bottom: 2.75rem;
+      line-height: 1.75;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      background: var(--accent); color: var(--text-light);
+      font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 1rem 2.25rem; border-radius: 4px;
+      text-decoration: none; cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      border: 2px solid var(--accent);
+      min-height: 44px;
+    }
+    .btn-primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: transparent; color: var(--cream);
+      font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 1rem 2.25rem; border-radius: 4px;
+      text-decoration: none; cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+      border: 2px solid rgba(245,241,232,0.3);
+      min-height: 44px;
+    }
+    .btn-outline:hover { background: rgba(245,241,232,0.08); border-color: var(--cream); transform: translateY(-2px); }
+    /* Diagonal bottom edge on hero */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 72px;
+      background: var(--primary);
+      clip-path: polygon(0 0, 100% 100%, 100% 100%, 0 100%);
+      pointer-events: none;
+    }
+
+    /* ─── PROOF BAR ─── */
+    .proof-bar {
+      background: #111E2D;
+      padding: 1.5rem 5%;
+    }
+    .proof-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .proof-item {
+      display: flex; align-items: center; gap: 0.65rem;
+      color: var(--cream); font-weight: 500; font-size: 0.9rem;
+    }
+    .proof-stars { color: #FFD700; letter-spacing: 3px; font-size: 1rem; }
+    .proof-count { font-weight: 700; color: var(--accent); }
+    .proof-sep { width: 1px; height: 26px; background: rgba(245,241,232,0.18); }
+    .proof-item svg { color: var(--accent); flex-shrink: 0; }
+
+    /* ─── SECTION COMMON ─── */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      text-transform: uppercase;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: var(--primary);
+      margin-bottom: 3.5rem;
+    }
+
+    /* ─── SERVICES ─── */
+    .services {
+      padding: 6rem 5% 6rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .service-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2.25rem 0;
+      border-top: 1px solid rgba(13,27,42,0.1);
+      cursor: pointer;
+      position: relative;
+      transition: padding-left 0.2s;
+    }
+    .service-row:last-child { border-bottom: 1px solid rgba(13,27,42,0.1); }
+    .service-row::before {
+      content: '';
+      position: absolute;
+      left: -5%;
+      top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .service-row:hover::before { opacity: 1; }
+    .service-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.25rem, 2.5vw, 2rem);
+      color: rgba(13,27,42,0.14);
+      width: 70px;
+      flex-shrink: 0;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+    .service-row:hover .service-num { color: var(--accent); }
+    .service-icon { width: 46px; height: 46px; flex-shrink: 0; }
+    .service-text { flex: 1; }
+    .service-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--primary);
+      margin-bottom: 0.35rem;
+      transition: color 0.2s;
+    }
+    .service-row:hover .service-name { color: var(--accent); }
+    .service-desc { font-size: 0.97rem; color: var(--text-muted); line-height: 1.65; max-width: 580px; }
+    .service-arrow {
+      font-size: 1.5rem;
+      color: rgba(13,27,42,0.18);
+      flex-shrink: 0;
+      font-style: normal;
+      transition: color 0.2s, transform 0.2s;
+      align-self: center;
+    }
+    .service-row:hover .service-arrow { color: var(--accent); transform: translateX(5px); }
+
+    /* ─── ABOUT ─── */
+    .about {
+      background: var(--primary);
+      padding: 7rem 5%;
+      overflow: hidden;
+    }
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-img-wrap { position: relative; padding-bottom: 2.5rem; }
+    .about-img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+    .about-badge {
+      position: absolute;
+      bottom: 0; right: -1rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 1.25rem 1.5rem;
+      border-radius: 4px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(255,85,0,0.35);
+    }
+    .about-badge-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 2.75rem;
+      line-height: 1;
+    }
+    .about-badge-text { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.9; }
+    .about-content .section-label { color: var(--accent); }
+    .about-content .section-title { color: var(--cream); }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 2.5rem;
+      margin-bottom: 2.75rem;
+    }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: rgba(245,241,232,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.25rem;
+    }
+    .about-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+    .about-bullets li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      color: rgba(245,241,232,0.78);
+      font-size: 0.97rem;
+      line-height: 1.55;
+    }
+    .about-bullets li svg { flex-shrink: 0; margin-top: 0.12rem; }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials {
+      background: var(--bg-subtle);
+      padding: 7rem 5%;
+    }
+    .testimonials-inner { max-width: 1200px; margin: 0 auto; }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+    .testi-card {
+      background: var(--surface);
+      border-radius: 6px;
+      padding: 2rem 1.75rem;
+      border-left: 3px solid var(--accent);
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .testi-card:hover { transform: translateY(-5px); box-shadow: 0 14px 36px rgba(13,27,42,0.1); }
+    .testi-stars { color: #FFD700; letter-spacing: 3px; font-size: 0.9rem; margin-bottom: 1rem; }
+    .testi-quote { font-size: 0.97rem; line-height: 1.75; color: var(--text-muted); margin-bottom: 1.5rem; font-style: italic; }
+    .testi-author {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--primary);
+    }
+    .testi-role { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner {
+      background: var(--accent);
+      padding: 5.5rem 5%;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: -60px;
+      width: 300px; height: 300px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .cta-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: -40px;
+      width: 400px; height: 400px;
+      background: rgba(0,0,0,0.06);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .cta-banner-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 4.5vw, 3.75rem);
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      position: relative; z-index: 1;
+    }
+    .cta-banner-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 2.25rem;
+      max-width: 520px;
+      margin-left: auto; margin-right: auto;
+      position: relative; z-index: 1;
+    }
+    .btn-white {
+      display: inline-flex; align-items: center;
+      background: #fff; color: var(--accent);
+      font-weight: 700; font-size: 0.9rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 1rem 2.75rem; border-radius: 4px;
+      text-decoration: none; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      border: none;
+      min-height: 44px;
+      position: relative; z-index: 1;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.2); }
+
+    /* ─── CONTACT ─── */
+    .contact { padding: 7rem 5%; background: var(--bg); }
+    .contact-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 5rem;
+    }
+    .contact-phone {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 3vw, 2.75rem);
+      color: var(--accent);
+      text-decoration: none;
+      margin-bottom: 0.2rem;
+      transition: color 0.2s;
+    }
+    .contact-phone:hover { color: var(--accent-dark); }
+    .contact-phone-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    .contact-address { font-size: 1rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 2.25rem; }
+    .hours-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.05rem;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--primary); margin-bottom: 0.75rem;
+    }
+    .hours-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .hours-list li {
+      display: flex; justify-content: space-between;
+      font-size: 0.88rem; color: var(--text-muted);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(13,27,42,0.07);
+    }
+    .hours-list li:first-child { border-top: 1px solid rgba(13,27,42,0.07); }
+    .hours-list li span:first-child { font-weight: 600; color: var(--text); }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-input, .form-textarea {
+      width: 100%; padding: 0.9rem 1rem;
+      font-family: 'Barlow', sans-serif; font-size: 0.95rem;
+      color: var(--text); background: var(--surface);
+      border: 1.5px solid rgba(13,27,42,0.12);
+      border-radius: 4px; outline: none;
+      transition: border-color 0.2s;
+      min-height: 44px;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+    .form-textarea { min-height: 140px; resize: vertical; }
+    .form-submit {
+      align-self: flex-start;
+      background: var(--accent); color: #fff;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 1rem 2.5rem; border: none; border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      min-height: 44px;
+    }
+    .form-submit:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--primary-dark);
+      padding: 3rem 5%;
+      color: rgba(245,241,232,0.45);
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1.1rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--cream);
+    }
+    .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .footer-links a {
+      color: rgba(245,241,232,0.45);
+      text-decoration: none; font-size: 0.82rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      transition: color 0.2s;
+      min-height: 44px; display: flex; align-items: center;
+    }
+    .footer-links a:hover { color: var(--cream); }
+    .footer-copy { font-size: 0.78rem; }
+
+    /* ─── FADE-UP ANIMATION ─── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Hero entry animations */
+    @keyframes heroEntry {
+      from { opacity: 0; transform: translateX(-36px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .hero-label    { animation: heroEntry 0.6s ease 0.25s both; }
+    .hero-headline { animation: heroEntry 0.7s ease 0.45s both; }
+    .hero-sub      { animation: heroEntry 0.7s ease 0.65s both; }
+    .hero-btns     { animation: heroEntry 0.7s ease 0.82s both; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-label, .hero-headline, .hero-sub, .hero-btns { animation: none; opacity: 1; }
+      .fade-up { opacity: 1; transform: none; }
+      * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+
+      .hero { padding: 68px 1.2rem 4rem; min-height: 100svh; }
+      .hero-geo-right, .hero-geo-circle { display: none; }
+      .hero-btns { flex-direction: column; align-items: stretch; }
+      .hero-btns .btn-primary,
+      .hero-btns .btn-outline { width: 100%; max-width: 300px; }
+
+      .proof-inner { gap: 1rem; }
+      .proof-sep { display: none; }
+
+      .services { padding: 4rem 1.2rem; }
+      .service-row { gap: 1rem; }
+      .service-icon { width: 38px; height: 38px; }
+      .service-num { width: 48px; }
+
+      .about { padding: 5rem 1.2rem; }
+      .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img { height: 300px; }
+      .about-img-wrap { padding-bottom: 2rem; }
+      .about-badge { bottom: 0; right: 0.5rem; }
+
+      .testi-grid { grid-template-columns: 1fr; }
+
+      .cta-banner { padding: 4rem 1.2rem; }
+
+      .contact { padding: 5rem 1.2rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-submit { width: 100%; align-self: stretch; }
+
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+
+    @media (max-width: 400px) {
+      .about-stats { grid-template-columns: 1fr; }
+      .hero-geo-tri { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<header id="nav">
+  <a href="#hero" class="nav-logo-link">
+    <img
+      src="https://images.squarespace-cdn.com/content/v1/57f6842ff5e2311b1e58b42d/1609195234941-X8QKUHQE6JU71GT5NVKW/YCF_Logo_CreamBlueIconify3D.png"
+      alt="Yakima CrossFit"
+      class="nav-logo-img"
+      onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+    >
+    <span style="display:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream);">YAKIMA CROSSFIT</span>
+  </a>
+  <div class="nav-links">
+    <a href="#services">Programs</a>
+    <a href="#about">About</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact" class="nav-cta">Get Started</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- Mobile Overlay -->
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <button class="overlay-close" id="overlayClose" aria-label="Close menu">✕</button>
+  <a href="#services" onclick="closeNav()">Programs</a>
+  <a href="#about"    onclick="closeNav()">About</a>
+  <a href="#reviews"  onclick="closeNav()">Reviews</a>
+  <a href="#contact"  onclick="closeNav()" style="color:var(--accent)">Get Started</a>
+</div>
+
+<!-- ─── HERO (Bold Poster) ─── -->
+<section class="hero" id="hero" aria-label="Hero">
+  <div class="hero-geo-right"  aria-hidden="true"></div>
+  <div class="hero-geo-tri"    aria-hidden="true"></div>
+  <div class="hero-geo-circle" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <span class="hero-label">Yakima, WA · 722 N. 16th Ave. #35</span>
+    <h1 class="hero-headline">
+      FORGE<br>
+      YOUR<br>
+      <span class="hl-blue">LIMI</span><span class="hl-accent">TS.</span>
+    </h1>
+    <p class="hero-sub">Yakima's most dedicated CrossFit box. Real coaching, real community, zero pretension. You don't have to be fit to start — you just have to start.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Try a Free Class</a>
+      <a href="#services" class="btn-outline">View Programs</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROOF BAR ─── -->
+<div class="proof-bar" role="region" aria-label="Social proof">
+  <div class="proof-inner">
+    <div class="proof-item">
+      <span class="proof-stars">★★★★★</span>
+      <span><span class="proof-count">200+</span> Five-Star Google Reviews</span>
+    </div>
+    <div class="proof-sep" aria-hidden="true"></div>
+    <div class="proof-item">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <span>Thriving Community</span>
+    </div>
+    <div class="proof-sep" aria-hidden="true"></div>
+    <div class="proof-item">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      <span>Classes 7 Days a Week</span>
+    </div>
+    <div class="proof-sep" aria-hidden="true"></div>
+    <div class="proof-item">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <span>All Levels Welcome</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SERVICES ─── -->
+<section id="services" aria-label="Programs">
+  <div class="services fade-up">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Built for Every<br>Athlete.</h2>
+
+    <div class="service-row fade-up">
+      <span class="service-num">01</span>
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="20" width="8" height="8" rx="2" fill="var(--accent)"/>
+          <rect x="36" y="20" width="8" height="8" rx="2" fill="var(--accent)"/>
+          <rect x="12" y="17" width="24" height="14" rx="3" fill="var(--blue)" opacity="0.25"/>
+          <rect x="12" y="22" width="24" height="4" rx="1.5" fill="var(--primary)"/>
+        </svg>
+      </div>
+      <div class="service-text">
+        <div class="service-name">CrossFit Classes</div>
+        <p class="service-desc">Expert-coached group workouts that scale to your fitness level. Whether it's your first day or you're chasing a PR, every class is built to push you forward safely and effectively.</p>
+      </div>
+      <span class="service-arrow" aria-hidden="true">→</span>
+    </div>
+
+    <div class="service-row fade-up">
+      <span class="service-num">02</span>
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="17" stroke="var(--accent)" stroke-width="3"/>
+          <path d="M24 14 L24 24 L31 29" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="service-text">
+        <div class="service-name">Open Gym</div>
+        <p class="service-desc">Thursday open gym gives members unstructured time to train solo, refine skills, or make up missed workouts — on your schedule, at your own pace, with full facility access.</p>
+      </div>
+      <span class="service-arrow" aria-hidden="true">→</span>
+    </div>
+
+    <div class="service-row fade-up">
+      <span class="service-num">03</span>
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="13" r="7" fill="var(--blue)" opacity="0.35"/>
+          <circle cx="13" cy="32" r="5" fill="var(--accent)" opacity="0.45"/>
+          <circle cx="35" cy="32" r="5" fill="var(--accent)" opacity="0.45"/>
+          <path d="M24 20 L13 37 M24 20 L35 37" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="service-text">
+        <div class="service-name">Youth Programs</div>
+        <p class="service-desc">Dedicated programming for athletes under 18. We build healthy movement patterns, confidence, and a genuine love of fitness that lasts a lifetime — not just a season.</p>
+      </div>
+      <span class="service-arrow" aria-hidden="true">→</span>
+    </div>
+
+    <div class="service-row fade-up">
+      <span class="service-num">04</span>
+      <div class="service-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 30 Q24 10 40 22" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <circle cx="40" cy="22" r="4" fill="var(--blue)"/>
+          <path d="M6 38 L42 38" stroke="var(--primary)" stroke-width="2" stroke-dasharray="5 3" stroke-linecap="round"/>
+          <circle cx="8" cy="30" r="3" fill="var(--accent)" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="service-text">
+        <div class="service-name">Drop-In Classes</div>
+        <p class="service-desc">Visiting Yakima? Out-of-town athletes are always welcome at YCF. Drop in for a single class and train alongside our community — no awkward "guest" energy, just good work.</p>
+      </div>
+      <span class="service-arrow" aria-hidden="true">→</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="about fade-up" id="about" aria-label="About Yakima CrossFit">
+  <div class="about-inner">
+    <div class="about-img-wrap fade-up">
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/57f6842ff5e2311b1e58b42d/1564590791125-YTUQN9DNOYYF202LNJZC/17799187_1493993973957817_1532666529223478940_n.jpg"
+        alt="Yakima CrossFit members training together"
+        class="about-img"
+        onerror="this.src='https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop&auto=format'"
+      >
+      <div class="about-badge">
+        <div class="about-badge-num">10+</div>
+        <div class="about-badge-text">Years Strong</div>
+      </div>
+    </div>
+
+    <div class="about-content fade-up">
+      <div class="section-label">Who We Are</div>
+      <h2 class="section-title">We're Not<br>a Gym.</h2>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-num" data-target="200" data-suffix="+">0</div>
+          <div class="stat-label">5-Star Reviews</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="7" data-suffix="">0</div>
+          <div class="stat-label">Days of Classes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="100" data-suffix="%">0</div>
+          <div class="stat-label">Scalable Workouts</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num" data-target="0" data-suffix="" data-text="All">All</div>
+          <div class="stat-label">Fitness Levels</div>
+        </div>
+      </div>
+      <ul class="about-bullets">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          CrossFit-certified coaches who care about your progress, not just your payment.
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Every workout scales — from first-timer to seasoned competitor, no one gets left behind.
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          A community that shows up for each other inside and outside the box.
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+          Youth programming that builds the next generation of Yakima athletes.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section class="testimonials fade-up" id="reviews" aria-label="Member reviews">
+  <div class="testimonials-inner">
+    <div class="section-label">Member Reviews</div>
+    <h2 class="section-title">Real People.<br>Real Results.</h2>
+    <div class="testi-grid">
+      <div class="testi-card fade-up">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testi-quote">"I walked in as a complete beginner expecting to feel lost. The coaches scaled every movement from day one and I was doing pull-ups within two months. The community here is unlike anything I've experienced at a regular gym."</p>
+        <div class="testi-author">Sarah M.</div>
+        <div class="testi-role">Member since 2021 · West Yakima</div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testi-quote">"I've tried big-box gyms, personal trainers, home workouts — nothing stuck until YCF. The programming is smart, the coaching is hands-on, and showing up at 5am with the same crew genuinely keeps me accountable."</p>
+        <div class="testi-author">Derek T.</div>
+        <div class="testi-role">Member since 2019 · Selah</div>
+      </div>
+      <div class="testi-card fade-up">
+        <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+        <p class="testi-quote">"My daughter went from dreading PE class to asking to go to the gym on weekends. The coaches treat the kids with the same respect as adults — that's a huge deal for us as parents."</p>
+        <div class="testi-author">Maria R.</div>
+        <div class="testi-role">Youth Program Parent · Terrace Heights</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA BANNER ─── -->
+<section class="cta-banner fade-up" aria-label="Service area">
+  <h2 class="cta-banner-title">Proudly Serving Yakima<br>and the Surrounding Valley</h2>
+  <p class="cta-banner-sub">Yakima · Selah · Union Gap · Terrace Heights · West Valley · Naches · Wapato</p>
+  <a href="#contact" class="btn-white">Try Your First Class Free</a>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact fade-up" id="contact" aria-label="Contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Ready to<br>Start?</h2>
+      <a href="tel:5098954959" class="contact-phone">(509) 895-4959</a>
+      <p class="contact-phone-label">Call · Text (509) 952-4475</p>
+      <p class="contact-address">
+        722 N. 16th Ave. #35<br>
+        Yakima, WA 98902
+      </p>
+      <p class="hours-title">Class Schedule</p>
+      <ul class="hours-list">
+        <li><span>Monday – Friday</span> <span>Multiple Daily Sessions</span></li>
+        <li><span>Saturday</span>        <span>Morning Classes</span></li>
+        <li><span>Sunday</span>          <span>Community WOD</span></li>
+        <li><span>Thursday</span>        <span>+ Open Gym</span></li>
+      </ul>
+    </div>
+
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <input type="text"  class="form-input" placeholder="Your Name"     autocomplete="name"  required>
+        <input type="email" class="form-input" placeholder="Email Address"  autocomplete="email" required>
+      </div>
+      <input type="tel" class="form-input" placeholder="Phone Number" autocomplete="tel">
+      <textarea class="form-textarea" placeholder="Tell us your fitness goals or ask any question..." required></textarea>
+      <button type="submit" class="form-submit">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-brand">Yakima CrossFit</span>
+    <div class="footer-links">
+      <a href="#services">Programs</a>
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <span class="footer-copy">&copy; 2025 Yakima CrossFit · Yakima, WA</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // Hamburger
+  const navToggle  = document.getElementById('navToggle');
+  const navOverlay = document.getElementById('navOverlay');
+  const overlayClose = document.getElementById('overlayClose');
+  navToggle.addEventListener('click', () => navOverlay.classList.add('open'));
+  overlayClose.addEventListener('click', closeNav);
+  function closeNav() { navOverlay.classList.remove('open'); }
+
+  // Fade-up observer
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); fadeObserver.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+  // Count-up observer
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      if (el.dataset.text) return; // static label
+      const target = parseInt(el.dataset.target);
+      const suffix = el.dataset.suffix || '';
+      let current = 0;
+      const duration = 1400;
+      const increment = target / (duration / 16);
+      const tick = setInterval(() => {
+        current = Math.min(current + increment, target);
+        el.textContent = Math.floor(current) + suffix;
+        if (current >= target) clearInterval(tick);
+      }, 16);
+      countObserver.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-target]').forEach(el => countObserver.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#16a34a';
+    btn.disabled = true;
+  }
+</script>
+</body>
+</html>
