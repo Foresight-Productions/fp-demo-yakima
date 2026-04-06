@@ -87,12 +87,17 @@
     }
     #nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.5); }
     .nav-logo-link { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
-    .nav-logo-img { height: 48px; object-fit: contain; filter: brightness(0) invert(1); }
-    .nav-logo-fallback {
-      display: none;
+    .nav-logo-text { display: flex; align-items: baseline; gap: 0.5rem; }
+    .nav-logo-ycf {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: 1.05rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
+      font-weight: 900; font-size: 1.5rem;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    .nav-logo-full {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600; font-size: 1rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
       color: var(--cream);
     }
     .nav-links { display: flex; align-items: center; gap: 2.5rem; flex-shrink: 0; }
@@ -626,13 +631,7 @@
 <!-- ─── NAV ─── -->
 <header id="nav">
   <a href="#hero" class="nav-logo-link">
-    <img
-      src="https://images.squarespace-cdn.com/content/v1/57f6842ff5e2311b1e58b42d/1609195234941-X8QKUHQE6JU71GT5NVKW/YCF_Logo_CreamBlueIconify3D.png"
-      alt="Yakima CrossFit"
-      class="nav-logo-img"
-      onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
-    >
-    <span class="nav-logo-fallback">Yakima CrossFit</span>
+    <span class="nav-logo-text"><span class="nav-logo-ycf">YCF</span> <span class="nav-logo-full">Yakima CrossFit</span></span>
   </a>
   <div class="nav-links">
     <a href="#services">Programs</a>
